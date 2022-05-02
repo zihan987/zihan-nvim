@@ -42,7 +42,7 @@ nmap <Tab> :tabnext<Return>
 " Windows
 
 " Split window
-nmap ss :split<Return><C-w>w
+nmap vs :split<Return><C-w>w
 nmap sv :vsplit<Return><C-w>w
 " Move window
 nmap <Space> <C-w>w

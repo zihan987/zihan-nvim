@@ -26,7 +26,7 @@ set laststatus=2
 set scrolloff=10
 set expandtab
 "let loaded_matchparen = 1
-set shell=fish
+set shell=zsh
 set backupskip=/tmp/*,/private/tmp/*
 
 " incremental substitution (neovim)
@@ -108,9 +108,9 @@ au BufNewFile,BufRead *.py set filetype=python
 " cpp
 au BufNewFile,BufRead *.cpp set filetype=cpp 
 " c 
-au BufNewFile,BufRead *. set filetype=c 
+au BufNewFile,BufRead *.c set filetype=c 
 
-set suffixesadd=.js,.es,.jsx,.json,.css,.less,.sass,.styl,.php,.py,.md
+set suffixesadd=.js,.es,.jsx,.json,.css,.less,.sass,.styl,.php,.py,.md,.c,.cpp
 
 autocmd FileType coffee setlocal shiftwidth=2 tabstop=2
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2

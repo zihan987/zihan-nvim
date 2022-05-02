@@ -27,6 +27,9 @@ if has("nvim")
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'windwp/nvim-autopairs'
   Plug 'windwp/nvim-ts-autotag'
+  Plug 'robert-oleynik/clangd-nvim'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'akinsho/toggleterm.nvim'
 endif
 
 Plug 'groenewege/vim-less', { 'for': 'less' }
