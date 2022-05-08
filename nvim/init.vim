@@ -8,8 +8,6 @@ scriptencoding utf-8
 " stop loading config if it's on tiny or small
 if !1 | finish | endif
 
-"autocmd  BufEnter  *  python require ' completion ' . on_attach ()
-
 set nocompatible
 set number
 syntax enable
@@ -26,7 +24,7 @@ set laststatus=2
 set scrolloff=10
 set expandtab
 "let loaded_matchparen = 1
-set shell=zsh
+set shell=fish
 set backupskip=/tmp/*,/private/tmp/*
 
 " incremental substitution (neovim)
@@ -109,7 +107,6 @@ au BufNewFile,BufRead *.py set filetype=python
 au BufNewFile,BufRead *.cpp set filetype=cpp 
 " c 
 au BufNewFile,BufRead *.c set filetype=c 
-
 set suffixesadd=.js,.es,.jsx,.json,.css,.less,.sass,.styl,.php,.py,.md,.c,.cpp
 
 autocmd FileType coffee setlocal shiftwidth=2 tabstop=2
@@ -160,10 +157,3 @@ set exrc
 "}}}
 
 " vim: set foldmethod=marker foldlevel=0:
-
-" Description: macOS-specific configs
-
-" Use OSX clipboard to copy and to paste
-set clipboard+=unnamedplus
-" Copy selected text in visual mode
-"set clipboard+=autoselect
