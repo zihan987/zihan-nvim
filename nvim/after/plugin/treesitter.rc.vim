@@ -23,7 +23,7 @@ require'nvim-treesitter.configs'.setup {
     "swift",
     "html",
     "scss",
-    "py",
+    "python",
     "c",
     "cpp",
     "go"
