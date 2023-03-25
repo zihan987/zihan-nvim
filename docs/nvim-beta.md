@@ -147,3 +147,10 @@ require'lspconfig'.pyright.setup{}
 ```
 
 默认的配置可在开源项目中找到。
+
+#### Rust
+
+```bash
+$ rustup component add rls rust-analysis rust-src
+$ CocInstall coc-rls
+```
