@@ -154,3 +154,9 @@ require'lspconfig'.pyright.setup{}
 $ rustup component add rls rust-analysis rust-src
 $ CocInstall coc-rls
 ```
+
+#### Golang
+
+```bash
+$ brew install gopls
+```
