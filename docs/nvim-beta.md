@@ -148,6 +148,13 @@ require'lspconfig'.pyright.setup{}
 
 默认的配置可在开源项目中找到。
 
+#### C/CPP
+
+```bash
+$ brew install clangd
+$ CocInstall coc-clangd
+```
+
 #### Rust
 
 ```bash
