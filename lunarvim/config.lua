@@ -12,6 +12,7 @@ lvim.keys.normal_mode['vs'] = ":split<Return><C-w>w"
 lvim.keys.normal_mode['sv'] = ":vsplit<Return><C-w>w"
 -- edit
 lvim.keys.normal_mode["<C-a>"] = "gg<S-v>G"
+lvim.keys.normal_mode['te'] = ":tabedit"
 
 -- plugins
 lvim.plugins = {
