@@ -13,6 +13,9 @@ lvim.keys.normal_mode['sv'] = ":vsplit<Return><C-w>w"
 -- edit
 lvim.keys.normal_mode["<C-a>"] = "gg<S-v>G"
 lvim.keys.normal_mode['te'] = ":tabedit"
+-- 在普通模式下设置 Tab 和 Shift+Tab 为缓冲区切换键
+lvim.keys.normal_mode["<Tab>"] = ":bn<CR>"
+lvim.keys.normal_mode["<S-Tab>"] = ":bp<CR>"
 
 -- plugins
 lvim.plugins = {
