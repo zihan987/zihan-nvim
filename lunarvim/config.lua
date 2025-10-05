@@ -1,134 +1,132 @@
--- Read the docs: https://www.lunarvim.org/docs/configuration
--- Video Tutorials: https://www.youtube.com/watch?v=sFA9kX-Ud_c&list=PLhoH5vyxr6QqGu0i7tt_XoVK9v-KvZ3m6
--- Forum: https://www.reddit.com/r/lunarvim/
--- Discord: https://discord.com/invite/Xb9B4Ny
+-- ===========================
+--  LunarVim User Config
+--  for macOS + Neovim ≥ 0.9
+-- ===========================
 
-lvim.colorscheme = 'NeoSolarized'
-lvim.lsp.automatic_servers_installation = false
+-- === 基础设置 ===
+lvim.colorscheme = "NeoSolarized"
 
--- keymap User:zihan
--- Split window
-lvim.keys.normal_mode['vs'] = ":split<Return><C-w>w"
-lvim.keys.normal_mode['sv'] = ":vsplit<Return><C-w>w"
--- edit
+-- 停止自动安装 LSP 服务器（新版 Mason 接口）
+lvim.lsp.installer.setup.automatic_installation = false
+
+-- === 快捷键配置 ===
+-- 窗口分屏
+lvim.keys.normal_mode["vs"] = ":split<Return><C-w>w"
+lvim.keys.normal_mode["sv"] = ":vsplit<Return><C-w>w"
+
+-- 编辑类
 lvim.keys.normal_mode["<C-a>"] = "gg<S-v>G"
-lvim.keys.normal_mode['te'] = ":tabedit"
--- 在普通模式下设置 Tab 和 Shift+Tab 为缓冲区切换键
+lvim.keys.normal_mode["te"] = ":tabedit"
+
+-- 缓冲区切换
 lvim.keys.normal_mode["<Tab>"] = ":bn<CR>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bp<CR>"
 
--- plugins
+-- === 插件配置 ===
 lvim.plugins = {
-  -- theme  
+  -- 主题：NeoSolarized
   {
-        'Tsuzat/NeoSolarized.nvim',
-        config = function()
-            require('lualine').setup {
-                options = {
-                    theme = 'NeoSolarized'
-                    
-                }
-            }
-        end
+    "Tsuzat/NeoSolarized.nvim",
+    config = function()
+      require("lualine").setup {
+        options = { theme = "NeoSolarized" }
+      }
+    end,
   },
-  -- markdown
+
+  -- Markdown 预览
   {
-        "iamcco/markdown-preview.nvim",
-        build = "cd app && npm install",
-        ft = "markdown",
-        config = function()
-        vim.g.mkdp_auto_start = 1
-        end,
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && npm install",
+    ft = "markdown",
+    config = function()
+      vim.g.mkdp_auto_start = 0
+      vim.g.mkdp_auto_close = 1
+    end,
   },
-  -- neo-tree  
+
+  -- 文件树（新版 Neo-tree）
   {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v2.x",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons",
-            "MunifTanjim/nui.nvim",
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+      require("neo-tree").setup({
+        close_if_last_window = true,
+        window = { width = 30 },
+        buffers = { follow_current_file = true },
+        filesystem = {
+          follow_current_file = true,
+          filtered_items = {
+            hide_dotfiles = false,
+            hide_gitignored = false,
+            hide_by_name = { "node_modules" },
+            never_show = { ".DS_Store", "thumbs.db" },
+          },
         },
-        config = function()
-            require("neo-tree").setup({
-            close_if_last_window = true,
-            window = {
-                width = 30,
-            },
-            buffers = {
-                follow_current_file = true,
-            },
-            filesystem = {
-                follow_current_file = true,
-                filtered_items = {
-                    hide_dotfiles = false,
-                    hide_gitignored = false,
-                    hide_by_name = {
-                        "node_modules"
-                    },
-                    never_show = {
-                        ".DS_Store",
-                        "thumbs.db"
-                    },
-                },
-            },
-        })
-        end
+      })
+    end,
   },
+
+  -- 快速修复列表增强 (nvim-bqf)
   {
     "kevinhwang91/nvim-bqf",
     event = { "BufRead", "BufNew" },
     config = function()
-    require("bqf").setup({
-            auto_enable = true,
-            preview = {
-            win_height = 12,
-            win_vheight = 12,
-            delay_syntax = 80,
-            border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
-            },
-            func_map = {
-            vsplit = "",
-            ptogglemode = "z,",
-            stoggleup = "",
-            },
-            filter = {
-            fzf = {
+      require("bqf").setup({
+        auto_enable = true,
+        preview = {
+          win_height = 12,
+          win_vheight = 12,
+          delay_syntax = 80,
+          border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
+        },
+        filter = {
+          fzf = {
             action_for = { ["ctrl-s"] = "split" },
             extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
-            },
-            },
-            })
+          },
+        },
+      })
     end,
   },
-  -- minimap
+
+  -- minimap（使用更稳定的新版本）
   {
-    'wfxr/minimap.vim',
-    build = "cargo install --locked code-minimap",
-    -- cmd = {"Minimap", "MinimapClose", "MinimapToggle", "MinimapRefresh", "MinimapUpdateHighlight"},
-    config = function ()
-      vim.cmd ("let g:minimap_width = 10")
-      vim.cmd ("let g:minimap_auto_start = 1")
-      vim.cmd ("let g:minimap_auto_start_win_enter = 1")
+    "echasnovski/mini.map",
+    version = false,
+    config = function()
+      local map = require("mini.map")
+      map.setup()
     end,
   },
-  -- nvim-spectre
+
+  -- 全局替换工具 nvim-spectre
   {
     "windwp/nvim-spectre",
-    event = "BufRead",
+    event = "VeryLazy",
     config = function()
       require("spectre").setup()
     end,
   },
-  -- numb.nvim
+
+  -- 行号预览（numb.nvim）
   {
-  "nacro90/numb.nvim",
-  event = "BufRead",
-  config = function()
-  require("numb").setup {
-    show_numbers = true, -- Enable 'number' for the window while peeking
-    show_cursorline = true, -- Enable 'cursorline' for the window while peeking
-  }
-  end,
-},
+    "nacro90/numb.nvim",
+    event = "BufRead",
+    config = function()
+      require("numb").setup({
+        show_numbers = true,
+        show_cursorline = true,
+      })
+    end,
+  },
 }
+
+-- === 启用 Lua LSP（方便编辑配置） ===
+require("lvim.lsp.manager").setup("lua_ls")
+
