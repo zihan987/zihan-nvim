@@ -1,3 +1,10 @@
+-- Read the docs: https://www.lunarvim.org/docs/configuration
+-- Example configs: https://github.com/LunarVim/starter.lvim
+-- Video Tutorials: https://www.youtube.com/watch?v=sFA9kX-Ud_c&list=PLhoH5vyxr6QqGu0i7tt_XoVK9v-KvZ3m6
+-- Forum: https://www.reddit.com/r/lunarvim/
+-- Discord: https://discord.com/invite/Xb9B4Ny
+
+
 -- ===========================
 --  LunarVim User Config
 --  for macOS + Neovim ≥ 0.9
@@ -5,6 +12,27 @@
 
 -- === 基础设置 ===
 lvim.colorscheme = "NeoSolarized"
+
+
+-- === 自定义启动页 Logo (Block风格) ===
+lvim.builtin.alpha.active = true
+lvim.builtin.alpha.mode = "dashboard"
+
+lvim.builtin.alpha.dashboard.section.header.val = {
+  " █████╗ ███████╗██╗ ██████╗     ███████╗██╗██╗  ██╗ █████╗ ███╗   ██╗",
+  "██╔══██╗██╔════╝██║██╔════╝     ╚══███╔╝██║██║  ██║██╔══██╗████╗  ██║",
+  "███████║███████╗██║██║             ███╔╝ ██║███████║███████║██╔██╗ ██║",
+  "██╔══██║╚════██║██║██║            ███╔╝  ██║██╔══██║██╔══██║██║╚██╗██║",
+  "██║  ██║███████║██║╚██████╗       ███████╗██║██║  ██║██║  ██║██║ ╚████║",
+  "╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝       ╚══════╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝",
+  "",
+  "                       🚀  ASIC-ZIHAN  🚀                       ",
+}
+
+lvim.builtin.alpha.dashboard.section.footer.val = {
+  "Customized by zihan — Powering LunarVim."
+}
+
 
 -- 停止自动安装 LSP 服务器（新版 Mason 接口）
 lvim.lsp.installer.setup.automatic_installation = false
@@ -129,4 +157,3 @@ lvim.plugins = {
 
 -- === 启用 Lua LSP（方便编辑配置） ===
 require("lvim.lsp.manager").setup("lua_ls")
-
