@@ -19,7 +19,7 @@
 
 Lazyvim我的GUI如下：
 
-![img](./docs/image/lazyvim.png)
+![img](./docs/image/Lazyvim.png)
 
 配置的教程在docs下，这次删除了部分terminal的配置，只是nvim的配置教程。
 
