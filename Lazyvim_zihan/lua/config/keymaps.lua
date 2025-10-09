@@ -17,3 +17,15 @@ map("n", "te", ":tabedit<CR>", { desc = "新建标签页" })
 -- 缓冲区切换（使用 Tab 和 Shift-Tab）
 map("n", "<Tab>", ":bn<CR>", { desc = "下一个缓冲区" })
 map("n", "<S-Tab>", ":bp<CR>", { desc = "上一个缓冲区" })
+
+-- 延迟执行，确保 LazyVim 的默认键位已加载
+vim.schedule(function()
+    -- 删除 LazyVim 默认的 <leader>e (通常是“Explorer / Export”)
+    pcall(vim.keymap.del, "n", "<leader>e")
+  
+    -- 绑定 <leader>e 打开 NeoTree
+    vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle left<CR>", { desc = "Toggle NeoTree" })
+  
+    -- 绑定 <leader>E 聚焦当前文件所在目录
+    vim.keymap.set("n", "<leader>E", "<cmd>Neotree reveal<CR>", { desc = "Reveal Current File in NeoTree" })
+  end)
